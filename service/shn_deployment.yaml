@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shn-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shn-pod-label
+  template:
+    metadata:
+      name: shn-pod
+      labels:
+        app: shn-pod-label
+    spec:
+      containers:
+        - name: shn-container
+          image: show_hostname:0
+          ports:
+            - containerPort: 80
+              protocol: TCP
